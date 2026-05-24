@@ -1,0 +1,6 @@
+﻿timestamp,mineral_name,demand_index,shipping_delay_days,geopolitical_risk,market_price
+2026-05-21 12:00:00,Lithium Carbonate,125,4,High,18125.00
+2026-05-21 12:05:00,Cobalt Metal,95,2,Medium,27075.00
+2026-05-21 12:10:00,Copper Cathodes,140,9,High,12880.00
+2026-05-21 12:15:00,Lithium Carbonate,85,1,Low,12325.00
+2026-05-21 12:20:00,Copper Cathodes,110,5,Medium,10120.00

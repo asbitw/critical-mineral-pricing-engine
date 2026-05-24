@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Critical Minerals Engine</title>
+    <!-- Tailwind CSS Engine -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- Chart.js Engine CDN -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+        
+        <!-- Header Dashboard Section -->
+        <header class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-800 pb-6 gap-4">
+            <div>
+                <h1 class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                    🌋 GLOBAL CRITICAL MINERALS ENGINE
+                </h1>
+                <p class="text-slate-400 text-sm mt-1">High-frequency real-time cloud data warehouse analytics dashboard template.</p>
+            </div>
+            <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 px-4 py-2 rounded-full shadow-inner">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span class="text-xs font-mono tracking-widest text-emerald-400 font-bold">STREAM LIVE ACTIVE</span>
+            </div>
+        </header>
+
+        <!-- Executive KPI Blocks -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Network Ticks</h3>
+                <p id="kpi-ticks" class="text-4xl font-black text-blue-400 font-mono">0</p>
+            </div>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Market Sentiment</h3>
+                <p id="kpi-sentiment" class="text-4xl font-black text-amber-400 font-mono">STABLE</p>
+            </div>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Composite Volatility</h3>
+                <p id="kpi-volatility" class="text-4xl font-black text-red-400 font-mono">0.00%</p>
+            </div>
+        </div>
+
+        <!-- Main Workspace Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            
+            <!-- Real Chart Graphs Workspace Container -->
+            <div class="lg:col-span-2 bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-xl flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold tracking-tight text-white">📈 High-Frequency Volatility Trend Line</h2>
+                    <span class="text-xs font-mono text-slate-500">Trailing 15 Updates</span>
+                </div>
+                <div class="relative w-full flex-grow min-h-[320px]">
+                    <canvas id="volatilityLineChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Configuration & Control Panel -->
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-xl">
+                <h2 class="text-xl font-bold tracking-tight text-white mb-6 flex items-center gap-2">
+                    <span>🎛️ Engine Control Deck</span>
+                </h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                            Simulated Market Shocks
+                        </label>
+                        <select id="market-shock" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-200 text-sm focus:outline-none focus:border-orange-500 transition-colors">
+                            <option value="none">Standard Market Variance</option>
+                            <option value="supply">Supply Chain Bottleneck (+Vol)</option>
+                            <option value="crash">Macroeconomic Downturn (-Prices)</option>
+                            <option value="boom">Green Energy Supercycle (+Prices)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                            Refresh Frequency
+                        </label>
+                        <input id="refresh-speed" type="range" min="500" max="3000" step="500" value="1000" class="w-full accent-orange-500 h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-xs text-slate-500 mt-1 font-mono">
+                            <span>0.5s (Fast)</span>
+                            <span>3.0s (Slow)</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800 flex flex-col gap-3">
+                        <button id="btn-pause" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition-all text-sm tracking-wide cursor-pointer">
+                            ⏸️ PAUSE ENGINE STREAM
+                        </button>
+                        <button id="btn-reset" class="w-full bg-red-950/40 hover:bg-red-900/30 text-red-400 border border-red-900/50 font-bold py-3 px-4 rounded-xl transition-all text-sm tracking-wide cursor-pointer">
+                            🚨 RESET HISTORICAL BASELINE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Global Spot Pricing Matrix Table Grid -->
+        <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-xl flex flex-col">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                    <span>📊 Global Spot Pricing Matrix</span>
+                </h2>
+                <span class="text-xs bg-slate-800 px-3 py-1 rounded-md text-slate-400">USD / Metric Ton</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-300">
+                    <thead class="text-xs uppercase bg-slate-950 text-slate-400 border-b border-slate-800">
+                        <tr>
+                            <th class="py-3 px-4">Asset Name</th>
+                            <th class="py-3 px-4 text-center">Hub / Origin</th>
+                            <th class="py-3 px-4 text-right">Spot Price</th>
+                            <th class="py-3 px-4 text-right">Net Change</th>
+                            <th class="py-3 px-4 text-center">Risk Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pricing-matrix" class="divide-y divide-slate-800 font-mono">
+                        <!-- Populated dynamically by javascript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="mt-12 text-center text-xs text-slate-600 font-mono">
+            Critical Minerals Pricing Engine Framework • Built for high-frequency cloud visualizations.
+        </footer>
+    </div>
+
+    <!-- Analytics Architecture Engine Script -->
+    <script>
+        let appState = {
+            isRunning: true,
+            ticks: 0,
+            refreshInterval: 1000,
+            shockMode: 'none',
+            volatilityHistory: Array(15).fill(0),
+            minerals: [
+                { id: 'lithium', name: 'Lithium Carbonate (Li2CO3)', origin: 'Chile/Australia', basePrice: 14200, currentPrice: 14200, change: 0 },
+                { id: 'cobalt', name: 'Cobalt Metal (99.8%)', origin: 'DR Congo', basePrice: 28500, currentPrice: 28500, change: 0 },
+                { id: 'nickel', name: 'Class 1 Nickel Pellet', origin: 'Indonesia LME', basePrice: 16400, currentPrice: 16400, change: 0 },
+                { id: 'neodymium', name: 'Neodymium Oxide (Nd2O3)', origin: 'China Rare Earth', basePrice: 48900, currentPrice: 48900, change: 0 },
+                { id: 'copper', name: 'COMEX Grade A Copper', origin: 'Global COMEX', basePrice: 8900, currentPrice: 8900, change: 0 },
+                { id: 'graphite', name: 'Natural Flake Graphite', origin: 'Madagascar/China', basePrice: 650, currentPrice: 650, change: 0 },
+                { id: 'manganese', name: 'Electrolytic Manganese Metal', origin: 'South Africa', basePrice: 2100, currentPrice: 2100, change: 0 },
+                { id: 'titanium', name: 'Titanium Sponge (99.3%)', origin: 'Japan/Kazakhstan', basePrice: 7800, currentPrice: 7800, change: 0 },
+                { id: 'vanadium', name: 'Vanadium Pentoxide (V2O5)', origin: 'Brazil/China', basePrice: 11500, currentPrice: 11500, change: 0 },
+                { id: 'platinum', name: 'Platinum Sponge (99.9%)', origin: 'South Africa NYMEX', basePrice: 31200, currentPrice: 31200, change: 0 }
+            ]
+        };
+
+        let intervalId = null;
+        let chartInstance = null;
+
+        const pricingMatrix = document.getElementById('pricing-matrix');
+        const kpiTicks = document.getElementById('kpi-ticks');
+        const kpiSentiment = document.getElementById('kpi-sentiment');
+        const kpiVolatility = document.getElementById('kpi-volatility');
+        const btnPause = document.getElementById('btn-pause');const btnReset = document.getElementById('btn-reset');const selectShock = document.getElementById('market-shock');const inputSpeed = document.getElementById('refresh-speed');function initChartEngine() {const ctx = document.getElementById('volatilityLineChart').getContext('2d');chartInstance = new Chart(ctx, {type: 'line',data: {labels: Array(15).fill('').map((_, i) => T-${15 - i}),datasets: [{label: 'Market Index Volatility',data: [...appState.volatilityHistory],borderColor: '#f59e0b',backgroundColor: 'rgba(245, 158, 11, 0.08)',borderWidth: 2,fill: true,tension: 0.4,pointRadius: 2,pointHoverRadius: 5}]},options: {responsive: true,maintainAspectRatio: false,plugins: { legend: { display: false } },scales: {x: { grid: { color: 'rgba(51, 65, 85, 0.3)' }, ticks: { color: '#64748b', font: { family: 'monospace' } } },y: { grid: { color: 'rgba(51, 65, 85, 0.3)' }, ticks: { color: '#64748b', font: { family: 'monospace' } }, beginAtZero: true }}}});}function runCalculationCycle() {if (!appState.isRunning) return;appState.ticks++;kpiTicks.innerText = appState.ticks.toLocaleString();let volatilityFactor = 0.015;if (appState.shockMode === 'supply') volatilityFactor = 0.045;if (appState.shockMode === 'crash') volatilityFactor = 0.030;if (appState.shockMode === 'boom') volatilityFactor = 0.035;let grossVolatilitySum = 0;appState.minerals = appState.minerals.map(mineral => {let randomWalk = (Math.random() - 0.5) * 2;let directionBias = 0;if (appState.shockMode === 'crash') directionBias = -0.015;if (appState.shockMode === 'boom') directionBias = 0.018;if (appState.shockMode === 'supply' && ['lithium', 'cobalt', 'neodymium', 'titanium'].includes(mineral.id)) {directionBias = 0.025;}let percentageChange = (randomWalk * volatilityFactor) + directionBias;let priceDelta = mineral.currentPrice * percentageChange;let finalPrice = Math.max(10, mineral.currentPrice + priceDelta);let netChangeFromBase = ((finalPrice - mineral.basePrice) / mineral.basePrice) * 100;grossVolatilitySum += Math.abs(percentageChange);return { ...mineral, currentPrice: finalPrice, change: netChangeFromBase };});let currentCycleVolatility = (grossVolatilitySum / appState.minerals.length) * 100;kpiVolatility.innerText = currentCycleVolatility.toFixed(2) + '%';appState.volatilityHistory.push(currentCycleVolatility);appState.volatilityHistory.shift();// FIXED LINE: Target index [0] explicitly to satisfy the Chart.js update engine APIif (chartInstance) {chartInstance.data.datasets[0].data = [...appState.volatilityHistory];chartInstance.update('none');}if (appState.shockMode === 'crash') {kpiSentiment.innerText = 'BEARISH';kpiSentiment.className = 'text-4xl font-black text-red-500 font-mono';} else if (appState.shockMode === 'boom' || appState.shockMode === 'supply') {kpiSentiment.innerText = 'BULLISH';kpiSentiment.className = 'text-4xl font-black text-emerald-400 font-mono';} else {kpiSentiment.innerText = 'STABLE';kpiSentiment.className = 'text-4xl font-black text-amber-400 font-mono';}renderInterfaceGrid();}function renderInterfaceGrid() {pricingMatrix.innerHTML = '';appState.minerals.forEach(m => {const changeClass = m.change >= 0 ? 'text-emerald-400' : 'text-red-400';const changeSign = m.change >= 0 ? '+' : '';const riskBadge = Math.abs(m.change) > 12? 'HIGH RISK': 'STABLE';const row = document.createElement('tr');row.className = 'border-b border-slate-800 hover:bg-slate-900/50 transition-colors';row.innerHTML = <td class="py-4 px-4 font-sans font-medium text-white">${m.name}</td> <td class="py-4 px-4 text-center font-sans text-slate-400 text-xs">${m.origin}</td> <td class="py-4 px-4 text-right font-bold text-slate-100">$${m.currentPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td> <td class="py-4 px-4 text-right font-bold ${changeClass}">${changeSign}${m.change.toFixed(2)}%</td> <td class="py-4 px-4 text-center">${riskBadge}</td>;pricingMatrix.appendChild(row);});}function initializeStreamingEngine() {if (intervalId) clearInterval(intervalId);intervalId = setInterval(runCalculationCycle, appState.refreshInterval);}btnPause.addEventListener('click', () => {appState.isRunning = !appState.isRunning;btnPause.innerText = appState.isRunning ? '⏸️ PAUSE ENGINE STREAM' : '▶️ RESUME ENGINE STREAM';btnPause.className = appState.isRunning? 'w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition-all text-sm tracking-wide cursor-pointer': 'w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-all text-sm tracking-wide cursor-pointer';});btnReset.addEventListener('click', () => {appState.ticks = 0;appState.volatilityHistory = Array(15).fill(0);appState.minerals = appState.minerals.map(m => ({ ...m, currentPrice: m.basePrice, change: 0 }));kpiTicks.innerText = '0';kpiVolatility.innerText = '0.00%';if(chartInstance) {chartInstance.data.datasets[0].data = [...appState.volatilityHistory];chartInstance.update();}renderInterfaceGrid();});selectShock.addEventListener('change', (e) => { appState.shockMode = e.target.value; });inputSpeed.addEventListener('input', (e) => {appState.refreshInterval = parseInt(e.target.value);initializeStreamingEngine();});// Initialize and fire immediatelyinitChartEngine();initializeStreamingEngine();renderInterfaceGrid();
